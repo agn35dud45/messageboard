@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import styles from "./page.module.css";
-import { supabase } from "@/lib/supabaseClient";
+import { supabase } from "../lib/supabaseClient";
 
 type Item = {
   id: string;
@@ -85,9 +85,6 @@ export default function Home() {
     setDeletingId(id);
 
     try {
-      const confirmed = window.confirm("Delete this item?");
-      if (!confirmed) return;
-
       const { error: deleteError } = await supabase
         .from("message_items")
         .delete()
